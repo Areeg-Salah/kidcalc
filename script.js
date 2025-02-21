@@ -1,4 +1,14 @@
 let expression = "";
+let correctAnswers = 0; 
+
+function login() {
+    let userName = document.getElementById("name").value;
+    if (userName.trim() !== "") {
+        document.getElementById("welcomeMessage").textContent = `Welcome, ${userName}!`;
+    } else {
+        alert("Please enter your name.");
+    }
+}
 
 function addToExpression(value) {
     expression += value;
@@ -16,7 +26,14 @@ function checkAnswer() {
     let userAnswer = document.getElementById("answer").value;
     let correctAnswer = eval(expression);
 
-    document.getElementById("result").textContent = userAnswer == correctAnswer ? "Great job!" : "Try again.";
+    if (userAnswer == correctAnswer) {
+        correctAnswers++;
+        document.getElementById("result").textContent = "Great job!";
+    } else {
+        document.getElementById("result").textContent = "Try again.";
+    }
+
+    document.getElementById("scoreCounter").textContent = `Correct Answers: ${correctAnswers}`;
 }
 
 function changeTheme() {
@@ -25,16 +42,16 @@ function changeTheme() {
 
     switch (theme) {
         case "space":
-            themeStylesheet.href = "space.css";
+            themeStylesheet.setAttribute("href", "styles-space.css");
             break;
         case "ocean":
-            themeStylesheet.href = "ocean.css";
+            themeStylesheet.setAttribute("href", "styles-ocean.css");
             break;
         case "spider":
-            themeStylesheet.href = "spider.css";
+            themeStylesheet.setAttribute("href", "styles-spider.css");
             break;
         default:
-            themeStylesheet.href = "styles-default.css";
+            themeStylesheet.setAttribute("href", "styles-default.css");
             break;
     }
 }
