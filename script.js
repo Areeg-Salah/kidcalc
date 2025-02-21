@@ -1,14 +1,5 @@
+let correctAnswers = 0;
 let expression = "";
-let correctAnswers = 0; 
-
-function login() {
-    let userName = document.getElementById("name").value;
-    if (userName.trim() !== "") {
-        document.getElementById("welcomeMessage").textContent = `Welcome, ${userName}!`;
-    } else {
-        alert("Please enter your name.");
-    }
-}
 
 function addToExpression(value) {
     expression += value;
@@ -24,7 +15,14 @@ function clearExpression() {
 
 function checkAnswer() {
     let userAnswer = document.getElementById("answer").value;
-    let correctAnswer = eval(expression);
+    let correctAnswer;
+
+    try {
+        correctAnswer = eval(expression); // Evaluates math expression safely
+    } catch (e) {
+        document.getElementById("result").textContent = "Invalid expression!";
+        return;
+    }
 
     if (userAnswer == correctAnswer) {
         correctAnswers++;
@@ -33,25 +31,19 @@ function checkAnswer() {
         document.getElementById("result").textContent = "Try again.";
     }
 
+
     document.getElementById("scoreCounter").textContent = `Correct Answers: ${correctAnswers}`;
 }
 
+document.getElementById("submitBtn").addEventListener("click", function () {
+    let userName = document.getElementById("name").value;
+    if (userName.trim() !== "") {
+        document.getElementById("welcomeMessage").textContent = `Welcome, ${userName}!`;
+    }
+});
+
 function changeTheme() {
     let theme = document.getElementById("theme").value;
-    let themeStylesheet = document.getElementById("themeStylesheet");
-
-    switch (theme) {
-        case "space":
-            themeStylesheet.setAttribute("href", "space.css");
-            break;
-        case "ocean":
-            themeStylesheet.setAttribute("href", "ocean.css");
-            break;
-        case "spider":
-            themeStylesheet.setAttribute("href", "spider.css");
-            break;
-        default:
-            themeStylesheet.setAttribute("href", "styles-default.css");
-            break;
-    }
+    document.body.className = theme; 
 }
+
