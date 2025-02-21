@@ -1,3 +1,7 @@
+@import url("space.css");
+@import url("ocean.css");
+@import url("spider.css");
+
 body {
     background-color: white;
     color: black;
