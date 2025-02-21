@@ -42,13 +42,13 @@ function changeTheme() {
 
     switch (theme) {
         case "space":
-            themeStylesheet.setAttribute("href", "styles-space.css");
+            themeStylesheet.setAttribute("href", "space.css");
             break;
         case "ocean":
-            themeStylesheet.setAttribute("href", "styles-ocean.css");
+            themeStylesheet.setAttribute("href", "ocean.css");
             break;
         case "spider":
-            themeStylesheet.setAttribute("href", "styles-spider.css");
+            themeStylesheet.setAttribute("href", "spider.css");
             break;
         default:
             themeStylesheet.setAttribute("href", "styles-default.css");
