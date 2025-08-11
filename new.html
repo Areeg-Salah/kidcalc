@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeCount - مبادرة التثقيف المالي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .hero-section {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* طبقة التعتيم */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* يمكن تعديل درجة التعتيم هنا */
+        }
+
+        /* الصورة الخلفية */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* محتوى النص */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #2f41e9;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #1e30d0;
+        }
+
+        /* CSS Reset & Variables */
+        :root {
+            --primary: #866986;
+            --secondary: #4E3C30;
+            --light: #F2EEE9;
+            --dark: #8B5D49;
+            --text: #A68B7A;
+            --gray: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url('trees.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        @font-face {
+            font-family: 'Tajawal';
+            src: url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #8B5D49 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-left: 15px;
+            width: 100px;
+            /* حجم العرض */
+            height: 100px;
+            /* حجم الارتفاع */
+            border-radius: 50%;
+            /* يخلي الصورة دائرية */
+            object-fit: cover;
+            /* يمنع التشويه */
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('istockphoto-1291331178-1024x1024.jpg') no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            margin-top: 0;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+
+        /* Main Content */
+        main {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 100px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            background-color: white;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            margin-bottom: 100px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-title {
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .stat-source {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            margin-bottom: 100px;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .solution-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .solution-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* SDGs Section */
+        .sdgs-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 5%;
+            border-radius: 10px;
+            margin-bottom: 100px;
+        }
+
+        .sdgs-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sdgs-image {
+            flex: 1;
+        }
+
+        .sdgs-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .sdgs-text {
+            flex: 1;
+        }
+
+        .sdgs-text h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .sdg-goal {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .sdg-number {
+            background-color: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 5% 30px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            color: #adb5bd;
+        }
+
+        .footer-links h3,
+        .footer-contact h3 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3:after,
+        .footer-contact h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            right: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-icon {
+            color: var(--secondary);
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #495057;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+
+            .about-section,
+            .sdgs-container {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .problem-section,
+            .sdgs-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="loogo.png" alt="WeCount Logo">
+                <div class="logo-text">We<span>Count</span></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#problem">المشكلة</a></li>
+                <li><a href="#solutions">حلولنا</a></li>
+                <li><a href="#sdgs">أهداف التنمية</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1>معرفة اليوم، حرية مالية غدًا</h1>
+            <p>مبادرة تهدف إلى توفير التعليم المالي لجميع المراهقين وطلاب المدارس الثانوية بالتساوي بين الفتيات والفتيان
+                في جميع أنحاء مصر</p>
+            <a href="#about" class="cta-button">اكتشف المزيد</a>
+        </div>
+    </section>
+
+    <main>
+        <div class="about-image fade-in delay-1">
+            <img src="not logo.jpg" alt="Logo" <h1> WeCount: Financial Literacy Initiative </h1>
+        </div>
+        <section id="about" class="about-section">
+            <div class="section-title">
+                <h2>من نحن</h2>
+            </div>
+            <div class="about-text fade-in">
+                <p>
+                <h2>مجموعة من الفتيات أطلقن مبادرة محلية تهدف إلى تعليم الشباب والمراهقين كيفية إدارة الأموال بطريقة
+                    صحية
+                    وحكيمة، وكيفية التفكير بوعي، واتخاذ قرارات مالية مستنيرة. كيفية التخطيط والاستثمار والنجاح في
+                    عالم
+                    يسيطر عليه الرأسمالية وغياب الوعي المالي.</h2>
+                </p>
+                <p>
+                <h2>
+                    تأسست WeCount لتكون أداة لإدارة جميع جوانب الحياة المتعلقة بالمال، مثل الصحة الجسدية، والصحة
+                    العقلية،
+                    والفرص، والأعمال.</h2>
+                </p>
+            </div>
+
+        </section>
+        <section id="problem" class="problem-section">
+            <div class="section-title">
+                <h2>أزمة الوعي المالي في مصر</h2>
+            </div>
+            <p class="fade-in">
+            <h1>
+                مصر في أزمة وعي مالي، حيث تكشف الأرقام الصادمة عن جهل بالمفاهيم الأساسية. وراء كل إفلاس
+                العديد من القرارات المالية الخاطئة التي تم اتباعها حتى الوصول إلى نقطة الدمار.</h1>
+            </p>
+            <p class="fade-in delay-1"><i>
+                    <h2>هذه الأرقام ليست مجرد نسب.. إنها:</h2>
+                </i></p>
+            <ul style="margin-right: 20px; margin-bottom: 30px;" class="fade-in delay-1">
+                <h3>
+                    <li>وباء شامل يهدد استقرار الأسرة</li>
+                    <li>عقبة تنموية تعيق تحقيق أهداف التنمية المستدامة</li>
+                    <li>ظلم مزدوج للنساء المستبعدات من القرارات المالية</li>
+                </h3>
+            </ul>
+
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">67%</div>
+                    <div class="stat-title">من المصريين لا يدخرون بانتظام</div>
+                    <div class="stat-source">(البنك المركزي المصري، 2022)</div>
+                </div>
+                <div class="stat-card fade-in delay-1">
+                    <div class="stat-number">48%</div>
+                    <div class="stat-title">من الأسر المصرية تعتمد على القروض للاحتياجات الأساسية</div>
+                    <div class="stat-source">(CAPMAS، 2021)</div>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <div class="stat-number">27%</div>
+                    <div class="stat-title">فقط من البالغين لديهم حسابات بنكية</div>
+                    <div class="stat-source">(البنك الدولي، 2023)</div>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <div class="stat-number">61%</div>
+                    <div class="stat-title">من النساء غير مشاركات في القرارات المالية الكبرى</div>
+                    <div class="stat-source">(المجلس القومي للمرأة، 2022)</div>
+                </div>
+                <div class="stat-card fade-in delay-4">
+                    <div class="stat-number">83%</div>
+                    <div class="stat-title">من طلاب الجامعات لا يستطيعون شرح التضخم</div>
+                    <div class="stat-source">(مسح اليونيسف، 2023)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions" class="solutions-section">
+            <div class="section-title">
+                <h2>حلولنا</h2>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card fade-in">
+                    <div class="solution-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>تصحيح المفاهيم الخاطئة</h3>
+                    <p>تصحيح المفاهيم الخاطئة حول المال التي زرعتها الأجيال السابقة في شباب اليوم</p>
+                </div>
+                <div class="solution-card fade-in delay-1">
+                    <div class="solution-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>تدمير العادات السلبية</h3>
+                    <p>تدمير العادات السلبية التي تؤدي إلى الإسراف أو في أسوأ الحالات الإفلاس والديون</p>
+                </div>
+                <div class="solution-card fade-in delay-2">
+                    <div class="solution-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>تحسين الوعي المالي</h3>
+                    <p>تحسين الوعي المالي المجتمعي للشباب والمراهقين وتوجيه الناس لفهم العادات القهرية</p>
+                </div>
+                <div class="solution-card fade-in delay-3">
+                    <div class="solution-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>تمكين المرأة ماليًا</h3>
+                    <p>تمكين النساء مالياً حتى يتمكنّ من إدارة أموالهن والتصرّف فيها بأنفسهن بحكمة ووعي مسبق</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sdgs" class="sdgs-section">
+            <div class="sdgs-container">
+                <div class="sdgs-image fade-in">
+                    <img src="boy.jpg" alt="SDGs">
+
+                </div>
+                <div class="sdgs-text fade-in delay-1">
+                    <h2>أهداف التنمية المستدامة</h2>
+                    <div class="sdg-goal">
+                        <div class="sdg-number">4</div>
+                        <p>تحقيق الهدف الرابع من أهداف التنمية المستدامة بنشر التعليم المالي بين شباب ومراهقي المستقبل
+                            والذي لا يتم تدريسه في المدارس المصرية</p>
+                    </div>
+                    <div class="sdg-goal">
+                        <div class="sdg-number">5</div>
+                        <p>تحقيق الهدف الخامس من أهداف التنمية المستدامة بتمكين المرأة من إدارة المال وفهم آلية ضخ المال
+                            إلى جانب الرجل</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img src="loogo.png" alt="WeCount Logo">
+                </div>
+                <p>مبادرة تهدف إلى توفير التعليم المالي لجميع المراهقين وطلاب المدارس الثانوية بالتساوي بين الفتيات
+                    والفتيان في جميع أنحاء مصر</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1Am4hLCdqK/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/iiwecount?igsh=Y2k4MGtvMTBraTht"><i
+                            class="fab fa-instagram"></i></a>
+                    <a
+                        href="https://www.linkedin.com/in/we-count-806950379?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@iiwecount?si=CzuNQav5NgLI3Q-w"><i class="fab fa-youtube"></i></a>
+                    <a href="http://tiktok.com/@wecount3"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#problem">المشكلة</a></li>
+                    <li><a href="#solutions">حلولنا</a></li>
+                    <li><a href="#sdgs">أهداف التنمية</a></li>
+                    <li><a href="#contact">تواصل معنا</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>تواصل معنا</h3>
+                <div class="contact-info">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <p>القاهرة، مصر</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <p>wecountcompany@gmail.com</p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <p>+20 1062567349</p>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 WeCount. جميع الحقوق محفوظة.
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger
+        document.addEventListener('DOMContentLoaded', function () {
+            const fadeElements = document.querySelectorAll('.fade-in');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        });
+    </script>
+</body>
+
+</html>
